@@ -1,5 +1,10 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(r2live)
+# cmake_minimum_required(VERSION 2.8.3)
+# project(r2live)
+cmake_minimum_required(VERSION 3.0.2)
+if(COMMAND cmake_policy)
+  cmake_policy(SET CMP0048 NEW)
+endif()
+project(r2live VERSION 0.1.0)
 
 # ADD_COMPILE_OPTIONS(-std=c++14 )
 # set(CMAKE_BUILD_TYPE "Release")
@@ -34,13 +39,19 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}   ${OpenMP_C_FLAGS}")
 find_package(OpenCV REQUIRED)
 
 # message(WARNING "OpenCV_VERSION: ${OpenCV_VERSION}")
+list(APPEND CMAKE_PREFIX_PATH "/usr/local/lib/cmake/Ceres")
 
 find_package(Ceres REQUIRED)
+# message(WARNING "Ceres_VERSION: ${Ceres_VERSION}")
+# message(WARNING "CERES_INCLUDE_DIRS: ${CERES_INCLUDE_DIRS}")
 find_package(PCL REQUIRED)
 
 find_package(PythonLibs REQUIRED)
 
 include_directories(${catkin_INCLUDE_DIRS} ${CERES_INCLUDE_DIRS})
+
+# include_directories(/usr/local/include/ceres)
+# link_directories(/usr/local/lib)
 
 add_message_files(
   FILES
