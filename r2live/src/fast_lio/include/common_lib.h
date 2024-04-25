@@ -176,6 +176,7 @@ struct Camera_Lidar_queue
         }
         m_last_imu_time = std::max(in_time, m_last_imu_time);
         // m_last_imu_time = in_time;
+        return 1;
     }
 
     int lidar_in(const double &in_time)
